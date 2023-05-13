@@ -12,7 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import com.mysql.cj.Session;
 
+import Control.ControllerFakeFight;
 import Control.ControllerUtente;
+import Model.Notizia;
 import Model.Utente;
 
 /**
@@ -35,7 +37,7 @@ public class ViewUtente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		System.out.println("qui");
 	}
 
 	/**
@@ -44,12 +46,11 @@ public class ViewUtente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		String username,email,pw;
 		
 		//Prendo il comando dell'utente
 		String userAction = request.getParameter("UserAction");
 		//System.out.println(userAction);
-		
+		System.out.println(userAction);
 		switch(userAction) {
 		case "login": 
 			//Recupero campi inseriti
@@ -70,7 +71,10 @@ public class ViewUtente extends HttpServlet {
 		case "Registra":
 			int esito = richiestaReg(request); 
 			System.out.println(esito);
-
+			break;
+		case "verifica":
+			System.out.println("qui");
+			invioNotizia(request);
 		}
 		
 		
@@ -103,5 +107,14 @@ public int richiestaReg(HttpServletRequest request) {
 	ControllerUtente reg = new ControllerUtente();
 	esito = reg.registraUtente(user);
 	return esito;
+}
+
+public Notizia invioNotizia(HttpServletRequest request) {
+	Notizia notizia;
+	notizia = new Notizia(request.getParameter("testo"), null, 0 , request.getParameter("fonte"));
+	System.out.println(notizia.toString());
+	ControllerFakeFight conff = new ControllerFakeFight();
+	conff.ricezioneNotizia(notizia);
+	return notizia;
 }
 }

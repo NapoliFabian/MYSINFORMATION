@@ -52,13 +52,30 @@
         </div>
       </nav>
       
-      <div class = "searchPage">
-     	 <div class="input-group mb-3">
-  			<input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-  			<div class="input-group-append">
-   			 <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
-  			</div>
+      
+      <form action= "ViewUtente" class="searchPage" method = "POST">
+ 		<div class="input-group mb-3">
+  			<span class="input-group-text" id="inputGroup-sizing-default">Testo</span>
+  			<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "testo">
 		</div>
-	</div>
+ 		<div class="input-group mb-3">
+  			<span class="input-group-text" id="inputGroup-sizing-default">Fonte</span>
+  			<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "fonte">
+		</div>
+		<div class="mb-3">
+  			<label for="formFile" class="form-label">Carica una foto da verificare</label>
+  			<input class="form-control" type="file" id="formFile">
+		</div>
+		<h6>Tipologia di notizia</h6>
+		<select class="form-select" aria-label="Default select example">
+  			<option selected>Testuale</option>
+  			<option value="1">Immagine</option>
+ 			<option value="2">Video</option>
+		</select>
+		<br>
+		<br>
+		<br>
+		<input type="submit" class="btn btn-primary" name= "UserAction" value="verifica">
+	</form>
 </body>
 </html>
