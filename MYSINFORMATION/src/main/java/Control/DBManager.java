@@ -48,7 +48,7 @@ public Utente trovaUtente(String username,String pw) throws Exception {
 	}
 public Utente controllaUtenteEsistente(String username,String email) throws Exception {
 	Utente user = null;
-	String sqlcommand = "select * from utente where username = '" + username + "' and email = '"+ email +"'";
+	String sqlcommand = "select * from utente where username = '" + username + "' or email = '"+ email +"'";
 	rs=query.executeQuery(sqlcommand);
 	while(rs.next()) {
 		user = new Utente(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4));
