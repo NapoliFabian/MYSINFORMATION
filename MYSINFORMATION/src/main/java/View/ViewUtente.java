@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mysql.cj.Session;
 
 import Control.ControllerFakeFight;
 import Control.ControllerUtente;
@@ -61,7 +60,18 @@ public class ViewUtente extends HttpServlet {
 			{
 				System.out.println(user.toString());
 				request.getSession().setAttribute("isLogged", true);
-				response.sendRedirect("index.jsp");
+
+				//Reindirizzamento in base al ruolo
+				switch(user.getRuolo())
+				{
+				case 0: 
+					response.sendRedirect("index.jsp");
+					break;
+				case 1:
+					response.sendRedirect("segnalazioniM.jsp");
+					break;
+				}
+					
 			}
 			else 
 			{
@@ -71,9 +81,9 @@ public class ViewUtente extends HttpServlet {
 		case "Registra":
 			int esito = richiestaReg(request); 
 			System.out.println(esito);
+			response.sendRedirect("login.jsp");
 			break;
 		case "verifica":
-			System.out.println("qui");
 			invioNotizia(request);
 		}
 		
@@ -112,7 +122,6 @@ public int richiestaReg(HttpServletRequest request) {
 public Notizia invioNotizia(HttpServletRequest request) {
 	Notizia notizia;
 	notizia = new Notizia(request.getParameter("testo"), null, 0 , request.getParameter("fonte"));
-	System.out.println(notizia.toString());
 	ControllerFakeFight conff = new ControllerFakeFight();
 	conff.ricezioneNotizia(notizia);
 	return notizia;

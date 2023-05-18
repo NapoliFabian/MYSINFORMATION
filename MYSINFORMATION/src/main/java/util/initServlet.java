@@ -25,7 +25,7 @@ public class initServlet extends HttpServlet{
      */
     public initServlet() {
         super();
-        System.out.println("Configurazione iniziale completata");
+        
     }
 
 	/**
@@ -34,6 +34,7 @@ public class initServlet extends HttpServlet{
 	public void init(ServletConfig config) throws ServletException {
 		boolean loggato = false;
 		int ruolo = 0;
+		config.getServletContext().setAttribute("isLogged",false);
 	}
 
 	/**
